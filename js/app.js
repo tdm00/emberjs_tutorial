@@ -31,17 +31,14 @@ App.tweetsController = Em.ArrayController.create({
   loadTweets: function() {
     var me = this;
     var username = me.get("username");
-    console.log(username);
     if ( username ) {
       var url = 'http://api.twitter.com/1/statuses/user_timeline.json'
-          url += '?screen_name=%@&classback=?'.fmt(me.get("username"));
-      // Output to console the url used for the call to Twitter
-      console.log(url);
+          url += '?screen_name=%@&callback=?'.fmt(me.get("username"));
       // push username to recent user array
-      App.recentUsersControler.addUser(username);
-      $.getJSON(url,function(data) {
+      App.recentUsersController.addUser(username);
+      $.getJSON(url,function(data){
         me.set('content', []);
-        $(data).each(function(index,value) {
+        $(data).each(function(index,value){
           var t = App.Tweet.create({
             avatar: value.user.profile_image_url,
             screen_name: value.user.screen_name,
@@ -50,7 +47,7 @@ App.tweetsController = Em.ArrayController.create({
           });
           me.pushObject(t);
         })
-      }
+      });
     }
   }
 });
@@ -67,7 +64,7 @@ App.recentUsersController = Em.ArrayController.create({
   },
   searchAgain: function(view) {
     App.tweetsController.set('username', view.context);
-    App.tweetsController.loadTweets;
+    App.tweetsController.loadTweets();
   },
   reverse: function() {
     return this.toArray().reverse();
