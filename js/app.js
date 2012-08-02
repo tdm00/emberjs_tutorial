@@ -32,7 +32,7 @@ App.tweetsController = Em.ArrayController.create({
     var me = this;
     var username = me.get("username");
     if ( username ) {
-      var url = 'http://api.twitter.com/1/statuses/user_timeline.json'
+      var url = 'http://api.twitter.com/1/statuses/user_timeline.json';
           url += '?screen_name=%@&callback=?'.fmt(me.get("username"));
       // push username to recent user array
       App.recentUsersController.addUser(username);
@@ -46,7 +46,7 @@ App.tweetsController = Em.ArrayController.create({
             date: value.created_at
           });
           me.pushObject(t);
-        })
+        });
       });
     }
   }
