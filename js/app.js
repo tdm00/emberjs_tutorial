@@ -39,6 +39,18 @@ App.tweetsController = Em.ArrayController.create({
       console.log(url);
       // push username to recent user array
       App.recentUsersControler.addUser(username);
+      $.getJSON(url,function(data) {
+        me.set('content', []);
+        $(data).each(function(index,value) {
+          var t = App.Tweet.create({
+            avatar: value.user.profile_image_url,
+            screen_name: value.user.screen_name,
+            text: value.text,
+            date: value.created_at
+          });
+          me.pushObject(t);
+        })
+      }
     }
   }
 });

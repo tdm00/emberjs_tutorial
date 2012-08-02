@@ -28,6 +28,16 @@
             </div>
             <div id="tweets">
                 <h3>Tweets</h3>
+                <ul>
+                  {{#each App.tweetsController}}
+                    <li>
+                      <img {{bindAttr src="avatar"}} />
+                      <span>{{date}}</span>
+                      <h3>{{screen_name}}</h3>
+                      <p>{{text}}</p>
+                    </li>
+                  {{/each}}
+                </ul>
             </div>
         </div>
     </script>
