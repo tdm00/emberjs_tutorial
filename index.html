@@ -18,6 +18,13 @@
         <div id="content">
             <div id="recent">
                 <h3>Recent Users</h3>
+                <ol>
+                  {{#each App.recentUsersController.reverse}}
+                    <li>
+                      <a href="#" title="view again" {{action "searchAgain" target="App.recentUsersController"}}>{{this}}</a> - <a href="#" title="remove" {{action "removeUser" target="App.recentUsersController"}}>X</a>
+                    </li>
+                  {{/each}}
+                </ol>
             </div>
             <div id="tweets">
                 <h3>Tweets</h3>
