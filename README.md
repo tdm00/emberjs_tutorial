@@ -1,0 +1,1 @@
+A beginner's tutorial to the Ember.js project.
