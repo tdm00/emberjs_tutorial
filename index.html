@@ -3,7 +3,7 @@
 <head>
     <title>Tweets</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/ember-0.9.6.min.js"></script>
     <script src="js/app.js"></script>
@@ -12,6 +12,8 @@
     <script type="text/x-handlebars">
         <div id="frm">
             <b>Load Tweets for: </b>
+            {{view App.SearchTextField placeholder="Twitter username" valueBinding="App.tweetsController.username"}}
+            <button {{action "loadTweets" target="App.tweetsController"}}>Go!</button>
         </div>
         <div id="content">
             <div id="recent">
